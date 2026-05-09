@@ -1,8 +1,8 @@
 <?php
 /*
-* @package		TF Learnpath Module
-* @version    1.2
-* @license		GNU General Public License version 2 or later; see LICENSE.txt
+* @package    TF Learnpath Module
+* @version    1.3
+* @license    GNU General Public License version 2 or later; see LICENSE.txt
 */
 
 \defined('_JEXEC') or die;
@@ -20,17 +20,17 @@ return new class () implements InstallerScriptInterface
     private string $minimumPhp    = '8.1.0';
   
     public function install(InstallerAdapter $adapter): bool {
-        echo Text::_('MOD_TFLEARNPATH_INSTALL') . "<br>";
+        Factory::getApplication()->enqueueMessage(Text::_('MOD_TFLEARNPATH_INSTALL'),'success');
         return true;
     }
 
     public function update(InstallerAdapter $adapter): bool{
-        echo Text::_('MOD_TFLEARNPATH_UPDATE') . "<br>";
+        Factory::getApplication()->enqueueMessage(Text::_('MOD_TFLEARNPATH_UPDATE'), 'success');
         return true;
     }
 
     public function uninstall(InstallerAdapter $adapter): bool {
-        echo Text::_('MOD_TFLEARNPATH_UNINSTALL') . "<br>";
+        Factory::getApplication()->enqueueMessage(Text::_('MOD_TFLEARNPATH_UNINSTALL'), 'info');
         return true;
     }
     
@@ -58,8 +58,8 @@ return new class () implements InstallerScriptInterface
         return true;
     }
 
-    public function postflight(string $type, InstallerAdapter $adapter): bool
-    {   
+    public function postflight(string $type, InstallerAdapter $adapter): bool {
+        Factory::getApplication()->enqueueMessage(Text::_('MOD_TFLEARNPATH_POSTFLIGHT'), 'info');
         return true;
     }
 };

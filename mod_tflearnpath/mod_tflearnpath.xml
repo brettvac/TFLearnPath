@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" client="site" method="upgrade">
     <name>mod_tflearnpath</name>
+	<version>1.3</version>
+	<description>MOD_TFLEARNPATH_DESCRIPTION</description>
     <author>Brett Vachon</author>
     <creationDate>March 2025</creationDate>
-    <copyright>Copyright (C) 2025 Brett Vachon</copyright>
-    <license>GNU General Public License version 3 or later</license>
-    <authorUrl>https://naftee.com</authorUrl>
-    <version>1.2</version>
-    <description>MOD_TFLEARNPATH_DESC</description>
+    <copyright>Copyright (C) 2025-2026 Joomla Fry/Brett Vachon</copyright>
+    <license>GNU General Public License version 3</license>
 
-    <namespace path="src">TfLearn\Module\TfLearnPath</namespace>
+    <namespace path="src">Naftee\Module\Tflearnpath</namespace>
+	
+	<scriptfile>script.php</scriptfile>
+
 
     <files>
         <folder module="mod_tflearnpath">services</folder>
         <folder>src</folder>
         <folder>tmpl</folder>
-        <folder>language</folder>
     </files>
    
    <languages folder="language">
@@ -23,20 +24,19 @@
 	  	<language tag="en-GB">en-GB/mod_tflearnpath.sys.ini</language>
 	 </languages>
    
-   <scriptfile>script.php</scriptfile>
     
    <config>
         <fields name="params">
             <fieldset name="basic">
                 <field name="course_id" type="text" label="MOD_TFLEARNPATH_COURSE_ID" desc="MOD_TFLEARNPATH_COURSE_ID_DESC" default="0" />
                 
-                <field name="path_layout" type="list" label="COM_TF_LAYOUT" default="block">
-                    <option value="block">COM_TF_BLOCK</option>
-                    <option value="accordion">COM_TF_ACCORDION</option>
-                    <option value="tabs">COM_TF_TABS</option>
+                <field name="path_layout" type="list" label="MOD_TFLEARNPATH_LAYOUT" default="block">
+                    <option value="block">MOD_TFLEARNPATH_BLOCK</option>
+                    <option value="accordion">MOD_TFLEARNPATH_ACCORDION</option>
+                    <option value="tabs">MOD_TFLEARNPATH_TABS</option>
                 </field>
                 
-                <field name="lessons_order_col" type="list" label="COM_TFLEARN_LESSON_ORDER_COLUMN" default="ordering">
+                <field name="lessons_order_col" type="list" label="MOD_TFLEARNPATH_LESSON_ORDER_COLUMN" default="ordering">
                     <option value="id">id</option>
                     <option value="title">title</option>
                     <option value="created">created</option>
@@ -47,22 +47,22 @@
                     <option value="note">note</option>
                 </field>
                 
-                <field name="lessons_order_dirn" type="list" label="COM_TFLEARN_LESSON_ORDER_DIRECTION" default="ASC">
+                <field name="lessons_order_dirn" type="list" label="MOD_TFLEARNPATH_LESSON_ORDER_DIRECTION" default="ASC">
                     <option value="DESC">JGLOBAL_ORDER_DESCENDING</option>
                     <option value="ASC">JGLOBAL_ORDER_ASCENDING</option>
                 </field>
                 
-                <field name="module_title_class" type="text" label="COM_TFLEARN_MODULE_TITLE" />
+                <field name="module_title_class" type="text" label="MOD_TFLEARNPATH_MODULE_TITLE" />
 
-                <field name="path_incomplete_icon" type="text" label="COM_TFLEARN_INCOMPLETE_LESSON" default="fa-regular fa-square"/>
+                <field name="path_incomplete_icon" type="text" label="MOD_TFLEARNPATH_INCOMPLETE_LESSON" default="fa-regular fa-square"/>
                 
-                <field name="path_complete_icon" type="text" label="COM_TFLEARN_COMPLETE_LESSON" default="fa-solid fa-square-check"/>
+                <field name="path_complete_icon" type="text" label="MOD_TFLEARNPATH_COMPLETE_LESSON" default="fa-solid fa-square-check"/>
                 
-                <field name="path_lock_icon" type="text" label="COM_TFLEARN_LOCK" default="fa-solid fa-lock"/>
+                <field name="path_lock_icon" type="text" label="MOD_TFLEARNPATH_LOCK" default="fa-solid fa-lock"/>
             </fieldset>
         </fields>
     </config>
   <updateservers>
-    <server type="extension" name="TF Learnpath">https://raw.githubusercontent.com/brettvac/TfLearnpath/refs/heads/main/update/updates.xml</server>
+    <server type="extension" name="TF Learn Path Updates">https://raw.githubusercontent.com/brettvac/TfLearnPath/refs/heads/main/update/updates.xml</server>
   </updateservers>
 </extension>

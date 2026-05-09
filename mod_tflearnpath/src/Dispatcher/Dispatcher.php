@@ -1,65 +1,61 @@
 <?php
 /*
-* @package		TFLearn Dashboard Module
-* @version    1.2
-* @license		GNU General Public License version 2 or later; see LICENSE.txt
+* @package    TF Learn Path Module
+* @version    1.3
+* @license    GNU General Public License version 3
 */
-namespace TfLearn\Module\TfLearnPath\Site\Dispatcher;
 
-defined('_JEXEC') or die;
+namespace Naftee\Module\Tflearnpath\Site\Dispatcher;
 
-use Joomla\CMS\Dispatcher\DispatcherInterface;
+//No direct access
+\defined('_JEXEC') or die;
+
+use Joomla\CMS\Dispatcher\AbstractModuleDispatcher;
 use Joomla\CMS\Helper\ModuleHelper;
-use Joomla\CMS\Language\Text;
-use Joomla\CMS\Application\CMSApplicationInterface;
-use Joomla\Input\Input;
-use Joomla\Registry\Registry;
-use Joomla\CMS\Factory;
 use Joomla\CMS\Helper\HelperFactoryAwareInterface;
 use Joomla\CMS\Helper\HelperFactoryAwareTrait;
-use TfLearn\Module\TfLearnPath\Site\Helper\TfLearnPathHelper;
 
-class Dispatcher implements DispatcherInterface, HelperFactoryAwareInterface
-{
+class Dispatcher extends AbstractModuleDispatcher implements HelperFactoryAwareInterface
+    {
     use HelperFactoryAwareTrait;
 
-    protected $module;
+    /**
+     * Returns the layout data.
+     *
+     * @return  array|false
+     */
+    protected function getLayoutData()
+        {       
+        // Get base data (module, app, input, params and template)
+        $data = parent::getLayoutData();
 
-    protected $app;
-
-    protected $input;
-
-    public function __construct(\stdClass $module, CMSApplicationInterface $app, Input $input)
-    {
-        $this->module = $module;
-        $this->app = $app;
-        $this->input = $input;
-    }
-
-    public function dispatch()
-    {       
-        // Load com_tflearn site language
-        Factory::getLanguage()->load('com_tflearn', JPATH_SITE);
-        // Load com_tflearn admin language
-        Factory::getLanguage()->load('com_tflearn', JPATH_ADMINISTRATOR);
-
-        // Get module params
-        $params = new Registry($this->module->params);
-        $courseId = (int) $params->get('course_id', 0);
+        // The parent getLayoutData() puts the module's Registry object into $data['params']
+        $params = $data['params'];
         
-        //Get user id
-        $user = Factory::getApplication()->getIdentity();
-
-        // Fetch path data using helper
-        if ($courseId) {
-            $path = $this->getHelperFactory()->getHelper('TfLearnPathHelper')->getCoursePath($courseId, $params);
-            $course_id = $courseId;
-        } else {
-            $path = null;
-            $this->app->enqueueMessage(Text::_('COM_TFLEARN_NO_COURSE'));
+        // Get the course ID for the path we want to display
+        $courseId = (int) $params->get('course_id', 0);
+               
+        if (!$courseId) {
+           return false;
         }
 
-        // Render the layout
-        require ModuleHelper::getLayoutPath('mod_tflearnpath');
+        //Get the user ID for course access check
+        $user = $this->app->getIdentity();
+        
+        // Fetch path for the course using the method inside the helper
+        $path = $this->getHelperFactory()->getHelper('TflearnpathHelper')->getCoursePath($courseId, $user);  
+
+        if ($path === null) 
+            {
+            return false;  //Helper failed to return an array for the course
+            }
+        
+        // Inject variables into the data array for the tmpl
+        $data['course_id'] = $courseId;
+        $data['user']      = $user;
+        $data['path']      = $path;
+        
+        return $data;
+ 
+        }
     }
-}
