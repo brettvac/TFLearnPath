@@ -1,17 +1,17 @@
-# TF Learnpath Module for Joomla
+# TF Learn Path Module for Joomla
 
 ![TF Learnpath logo](Tf-Learnpath.jpg)
 
-The **TF Learnpath** module (`mod_tflearnpath`) is a Joomla module designed to display lessons for courses in the **TF Learn** component (`com_tflearn`). 
+**TF Learn Path** is a Joomla module designed to display lesson navigation for courses created using the **TF Learn** component. 
 
-When you install and configure **TF Learnpath**, it provides a visual representation of course modules and lessons, with support for multiple layouts (block, accordion, or tabs) and access restrictions. Perfect for e-learning websites, this module helps users navigate their learning journey with ease.
+When you install and configure **TF Learn Path**, it provides a visual representation of course modules and lessons, with support for multiple layouts (block, accordion, or tabs) and access restrictions. Perfect for e-learning websites, this module helps users navigate their learning journey with ease.
 
 ## Features
 
-- **Learning Path Display:** Shows course modules and lessons in a clean, organized format.
+- **Easily Display Lessons:** The module shows the course title, followed by sections (modules) and their lessons. Lessons are linked to their respective pages in `com_tflearn` if accessible based on the course completion requirements.
 - **Multiple Layout Options:** Choose between block, accordion, or tabs layouts to match your site’s design.
-- **Access Control:** Integrates with `com_tflearn` to check user access, displaying restricted lessons with lock icons.
-- **Customizable Styling:** Add custom CSS classes for the module title and icons for completed/incomplete lessons.
+- **Access Control:** Seamlessly integrates with `com_tflearn` to check user access to the lesson. If a user hasn't completed the previous lesson, restricted lessons show a lock icon and message.
+- **Customizable Styling:** Easily add CSS classes for the module title and/or layout elements such as icons for completed/incomplete lessons.
 
 ## Requirements
 
@@ -51,14 +51,8 @@ When you install and configure **TF Learnpath**, it provides a visual representa
    - Assign the module to a position (e.g., `sidebar-right`) and a menu item.
 3. Save and view the frontend—your learning path will display with collapsible sections.
 
-## Features
-
-- **Frontend Display:** The module shows the course title, followed by sections (modules) and their lessons. Lessons are linked to their respective pages in `com_tflearn` if accessible based on the course completion requirements.
-- **Access Restrictions:** If a user hasn't completed the previous lesson, restricted lessons show a lock icon and message.
-- **Customization:** Add custom CSS to style the `.tflearn-path` container, icons, or layout elements.
-
 ## Contributions
-[TF Learn](https://joomlafry.com/joomla-extensions/learn-joomla-extension) (the best LMS for Joomla!)
+The code to display the lessons is directly copied from the [TF Learn](https://joomlafry.com/joomla-extensions/learn-joomla-extension) component (the best LMS for Joomla!)
 
 ## FAQ
 
@@ -74,6 +68,3 @@ When you install and configure **TF Learnpath**, it provides a visual representa
 `BTC 1PXWZJcBfehqgV25zWdVDS6RF2yVMxFkZD`
 
 `Eth 0xC9b695D4712645Ba178B4316154621B284e2783D`
-
-**Q: Got any more awesome Joomla! plugins?**  
-**A:** Find them [right here](https://naftee.com)
