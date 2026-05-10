@@ -13,7 +13,7 @@
         
 		<infourl title="TF Learn Path GitHub Repository">https://github.com/brettvac/TFLearnPath</infourl> 
 		
-		<changelogurl>https://github.com/brettvac/TFLearnPath/releases/tag/1.3</changelogurl>
+		<changelogurl>https://raw.githubusercontent.com/brettvac/TfLearnPath/refs/heads/main/update/changelog.xml</changelogurl>
 
         <targetplatform name="joomla" version="5\..*|6\..*"/>
         <php_minimum>8.1.0</php_minimum>
