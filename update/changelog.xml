@@ -9,15 +9,15 @@
 			<item>Implemented AbstractModuleDispatcher logic for the dispatcher.</item>
 			<item>Added logic to exit early inside the dispatcher when no course display is needed instead of throwing enqueueMessage.</item>
 			<item>Removed the check inside the tmpl file for course display as this is now handled by the dispatcher.</item>
-			<item>Fixed the helper function method call to remove unused $params.</item>
+			<item>Fixed the helper function method call to remove unused $params variable.</item>
 			<item>Changed the script file to use enqueueMessage instead of echo text.</item>
 			<item>Standardized the manifest file and corrected duplicate copyright tags.</item>
 			<item>Corrected the package name to TF Learn Path Module.</item>
 		</fix>
 
 		<change>
-			<item><![CDATA[Moved $params->get calls inside the template file instead of the dispatcher.]]></item>
-            <item><![CDATA[Moved params->get calls to the top of the tmpl file for clarity.]]></item>
+    <item><![CDATA[Moved <pre>$params->get</pre> calls inside the template file instead of the dispatcher.]]></item>
+    <item><![CDATA[Moved <pre>params->get</pre> calls to the top of the tmpl file for clarity.]]></item>
 			<item>Changed namespace to Naftee\Module\Tflearnpath\Site\Dispatcher.</item>
 			<item>Changed namespace to Naftee\Module\Tflearnpath\Site\Helper.</item>
 			<item>Updated namespaces in the service provider and manifest file.</item>
