@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" client="site" method="upgrade">
     <name>mod_tflearnpath</name>
-	  <version>1.4</version>
+	  <version>1.5</version>
 	  <description>MOD_TFLEARNPATH_DESCRIPTION</description>
     <author>Brett Vachon</author>
     <creationDate>March 2025</creationDate>

@@ -3,6 +3,19 @@
     <changelog>
         <element>mod_tflearnpath</element>
         <type>module</type>
+        <version>1.5</version>
+
+        <fix>
+            <item>Updated namespace imports in the Helper file to use the correct Course and Lesson classes.</item>
+            <item>Fixed fatal errors in the Helper file by instantiating Course and Lesson objects with configuration arrays instead of calling instance methods statically.</item>
+            <item>Updated namespace imports in the Template file to reference the correct Completion, Course, Lesson, and Restriction classes.</item>
+            <item>Fixed fatal errors in the Template file by properly instantiating Restriction, Lesson, and Completion objects before calling their methods.</item>
+        </fix>
+    </changelog>
+
+    <changelog>
+        <element>mod_tflearnpath</element>
+        <type>module</type>
         <version>1.4</version>
 
         <addition>

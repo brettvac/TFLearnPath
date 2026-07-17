@@ -1,7 +1,7 @@
 <?php
 /*
 * @package    TF Learnpath Module
-* @version    1.3
+* @version    1.5
 * @license    GNU General Public License version 2 or later; see LICENSE.txt
 */
 

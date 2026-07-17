@@ -1,7 +1,7 @@
 <?php
 /*
 * @package		TF Learn Path Module
-* @version		1.4
+* @version		1.5
 * @license		GNU General Public License version 3
 */
 
@@ -10,27 +10,35 @@ namespace Naftee\Module\Tflearnpath\Site\Helper;
 \defined('_JEXEC') or die;
 
 use TechFry\Library\TDb;
-use TechFry\Component\TfLearn\Administrator\Helper\LessonHelper;
-use TechFry\Component\TfLearn\Administrator\Helper\CourseHelper;
+// 1. Changed from CourseHelper and LessonHelper to Course and Lesson
+use TechFry\Component\TfLearn\Administrator\Helper\Lesson;
+use TechFry\Component\TfLearn\Administrator\Helper\Course;
 
 class TflearnpathHelper
 {
     public static function getCoursePath($courseId, $user)
     {
-      
-        //Fetch the course from the database
+        // Fetch the course from the database
         $db = new TDb('tfl_courses');
         $course = $db->get_item(['id' => $courseId]);
        
-        // Check for access using CourseHelper::is_enrolled
-        if (!$course || !CourseHelper::is_enrolled($courseId, $user->id)) {
+        // Instantiate the Course object with the user and course ID
+        $courseObj = new Course([
+            'course_id' => $courseId, 
+            'user_id' => $user->id
+        ]);
+       
+        // Call the instance method
+        if (!$course || !$courseObj->is_enrolled()) {
             return null;
         }
-        $modules = json_decode($course->modules, true) ?: []; //Extract the modules from JSON data
+        
+        $modules = json_decode($course->modules, true) ?: []; 
         $path = [];
         $i = 0;
+        
         foreach ($modules as $module) {
-            $moduleId = $module['module_id']; //Extract the module ID from the $module array
+            $moduleId = $module['module_id']; 
            
             // Fetch module details from the database using the module ID
             $db_mod = new TDb('tfl_modules');
@@ -38,15 +46,21 @@ class TflearnpathHelper
            
             if ($mod && $mod->published) {
                 $mod->title = $module['module_name'] ?: $mod->title;
-                $lessons = LessonHelper::get_lessons($moduleId, 1);
+                
+                // Instantiate the Lesson object with the required config
+                $lessonObj = new Lesson(['module_id' => $moduleId]);
+                
+                // Call the instance method
+                $lessons = $lessonObj->get_lessons(1);
 
-                $path[$i] = [ //Build an array entry for each module’s title and lessons
+                $path[$i] = [ 
                     htmlspecialchars($mod->title),
-                    $lessons ?: [] // Use lessons if available, otherwise an empty array
+                    $lessons ?: [] 
                 ];
                 $i++;
             }
         }
+        
         return [
             'course' => $course,
             'tabs' => $path

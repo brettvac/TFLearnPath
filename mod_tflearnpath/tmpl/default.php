@@ -1,7 +1,7 @@
 <?php
 /*
 * @package        TF Learn Path Module
-* @version        1.4
+* @version        1.5
 * @license        GNU General Public License version 3
 */
 
@@ -10,9 +10,10 @@
 
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Factory;
-use TechFry\Component\TfLearn\Administrator\Helper\CompletionHelper;
-use TechFry\Component\TfLearn\Administrator\Helper\CourseHelper;
-use TechFry\Component\TfLearn\Administrator\Helper\LessonHelper;
+use TechFry\Component\TfLearn\Administrator\Helper\Completion;
+use TechFry\Component\TfLearn\Administrator\Helper\Course;
+use TechFry\Component\TfLearn\Administrator\Helper\Lesson;
+use TechFry\Component\TfLearn\Administrator\Helper\Restriction; 
 
 $titleClass     = $params->get('module_title_class', '');
 $incompleteIcon = $params->get('path_incomplete_icon', 'fa-regular fa-square');
@@ -41,12 +42,21 @@ $itemidString   = $pathsItemId ? '&Itemid=' . $pathsItemId : '';
                 $lessonOutput = '';
 
                 foreach ($lessons as $lesson) {
-                    $restrict = CourseHelper::check_restrict($lesson->id, $user->id, $courseId);
+                    
+                    // Instantiate Restriction class and call check_restriction()
+                    $restrictionObj = new Restriction([
+                        'course_id' => $courseId,
+                        'lesson_id' => $lesson->id,
+                        'user_id'   => $user->id
+                    ]);
+                    $restrict = $restrictionObj->check_restriction();
                     
                     // Append the dynamic Itemid string to the Route
                     $url      = Route::_('index.php?option=com_tflearn&view=page&course=' . $courseId . '&id=' . $lesson->id . ($lesson->lesson_type == 'multi' ? '&section=1' : '') . $itemidString);
                     
-                    $contents = LessonHelper::get_content($lesson->id);
+                    // Instantiate the Lesson object with lesson_id
+                    $lessonObj = new Lesson(['lesson_id' => $lesson->id]);
+                    $contents = $lessonObj->get_content();
                     
                     $totalPages = count($contents);
                     $link = ($totalPages || $lesson->description) ? '<a href="' . $url . '">' . htmlspecialchars($lesson->title) . '</a>' : htmlspecialchars($lesson->title);
@@ -57,7 +67,13 @@ $itemidString   = $pathsItemId ? '&Itemid=' . $pathsItemId : '';
                         $lessonOutput .= '<strong>' . htmlspecialchars($lesson->title) . '</strong>';
                         $lessonOutput .= '<br><small>' . $restrict . '</small>';
                     } else {
-                        $completion = $user->id ? CompletionHelper::get_completion($user->id, $lesson->id) : null;
+                        // Instantiate Completion class and call instance method get_completion()
+                        $completionObj = new Completion([
+                            'user_id'   => $user->id, 
+                            'lesson_id' => $lesson->id
+                        ]);
+                        
+                        $completion = $user->id ? $completionObj->get_completion() : null;
                         $lessonIcon = $completion ? $completeIcon : $incompleteIcon;
                         
                         $lessonOutput .= '<i class="' . $lessonIcon . '"></i> ';
