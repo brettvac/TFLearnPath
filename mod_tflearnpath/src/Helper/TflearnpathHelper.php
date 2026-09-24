@@ -1,7 +1,7 @@
 <?php
 /*
 * @package		TF Learn Path Module
-* @version		1.5
+* @version		1.6
 * @license		GNU General Public License version 3
 */
 
@@ -9,9 +9,13 @@ namespace Naftee\Module\Tflearnpath\Site\Helper;
 
 \defined('_JEXEC') or die;
 
+// TF Learn Library: src/Tdb
 use TechFry\Library\TDb;
-// 1. Changed from CourseHelper and LessonHelper to Course and Lesson
+
+// TF Learn Component: admin/src/Helper/Lesson.php
 use TechFry\Component\TfLearn\Administrator\Helper\Lesson;
+
+// TF Learn Component: admin/src/Helper/Course.php
 use TechFry\Component\TfLearn\Administrator\Helper\Course;
 
 class TflearnpathHelper

@@ -1,7 +1,7 @@
 <?php
 /*
 * @package    TF Learn Path Module
-* @version    1.5
+* @version    1.6
 * @license    GNU General Public License version 3
 */
 

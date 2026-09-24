@@ -1,7 +1,7 @@
 <?php
 /*
 * @package        TF Learn Path Module
-* @version        1.5
+* @version        1.6
 * @license        GNU General Public License version 3
 */
 
@@ -10,10 +10,27 @@
 
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Factory;
+
+// TF Learn Component: admin/src/Helper/Completion.php
 use TechFry\Component\TfLearn\Administrator\Helper\Completion;
+
+// TF Learn Component: admin/src/Helper/Course.php
 use TechFry\Component\TfLearn\Administrator\Helper\Course;
+
+// TF Learn Component: admin/src/Helper/Lesson.php
 use TechFry\Component\TfLearn\Administrator\Helper\Lesson;
-use TechFry\Component\TfLearn\Administrator\Helper\Restriction; 
+
+// TF Learn Component: admin/src/Helper/Restriction.php
+use TechFry\Component\TfLearn\Administrator\Helper\Restriction;
+
+// TF Learn Library: src/View/Sky/Accordion.php
+use TechFry\Library\View\Sky\Accordion;
+
+// TF Learn Library: src/View/Sky/Tabs.php
+use TechFry\Library\View\Sky\Tabs;
+
+// TF Learn Library: src/View/Sky/Block.php
+use TechFry\Library\View\Sky\Block;
 
 $titleClass     = $params->get('module_title_class', '');
 $incompleteIcon = $params->get('path_incomplete_icon', 'fa-regular fa-square');
@@ -86,13 +103,15 @@ $itemidString   = $pathsItemId ? '&Itemid=' . $pathsItemId : '';
 
             switch ($layout) {
                 case 'accordion':
-                    $display = new TechFry\Library\View\Sky\Accordion($tabsContent, ['first_open' => 0]);
+                    $display = new Accordion($tabsContent, ['first_open' => 0]);
                     break;
+
                 case 'tabs':
-                    $display = new TechFry\Library\View\Sky\Tabs($tabsContent, ['type' => 'tabs']);
+                    $display = new Tabs($tabsContent, ['type' => 'tabs']);
                     break;
+
                 default:
-                    $display = new TechFry\Library\View\Sky\Block($tabsContent, ['show_heading' => 1]);
+                    $display = new Block($tabsContent, ['show_heading' => 1]);
                     break;
             }
             echo $display->display();

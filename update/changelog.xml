@@ -3,36 +3,42 @@
     <changelog>
         <element>mod_tflearnpath</element>
         <type>module</type>
+        <version>1.6</version>
+        <addition>
+            <item>Added a changelog URL to the module manifest file.</item>
+        </addition>
+        <change>
+            <item>Added descriptive comments to the Helper file identifying the location and purpose of the files referenced by its namespace use statements.</item>
+            <item>Added descriptive comments to the Template file identifying the location and purpose of the files referenced by its namespace use statements.</item>
+        </change>
+    </changelog>
+    <changelog>
+        <element>mod_tflearnpath</element>
+        <type>module</type>
         <version>1.5</version>
-
         <fix>
-            <item>Updated namespace imports in the Helper file to use the correct Course and Lesson classes.</item>
+            <item>Updated namespace imports in the Helper file to use the correct Course and Lesson classes (previously named CourseHelper and LessonHelper.</item>
             <item>Fixed fatal errors in the Helper file by instantiating Course and Lesson objects with configuration arrays instead of calling instance methods statically.</item>
             <item>Updated namespace imports in the Template file to reference the correct Completion, Course, Lesson, and Restriction classes.</item>
             <item>Fixed fatal errors in the Template file by properly instantiating Restriction, Lesson, and Completion objects before calling their methods.</item>
         </fix>
     </changelog>
-
     <changelog>
         <element>mod_tflearnpath</element>
         <type>module</type>
         <version>1.4</version>
-
         <addition>
             <item>Added French language strings.</item>
             <item>Added a configuration field in the manifest file to choose the correct menu item for the paths view.</item>
         </addition>
-
         <change>
             <item>Updated the template file to force the selected menu item ID for paths view links.</item>
         </change>
     </changelog>
-
     <changelog>
         <element>mod_tflearnpath</element>
         <type>module</type>
         <version>1.3</version>
-
         <fix>
             <item>Implemented AbstractModuleDispatcher logic for the dispatcher.</item>
             <item>Added logic to exit early inside the dispatcher when no course display is needed instead of throwing enqueueMessage.</item>
@@ -42,7 +48,6 @@
             <item>Standardized the manifest file and corrected duplicate copyright tags.</item>
             <item>Corrected the package name to TF Learn Path Module.</item>
         </fix>
-
         <change>
             <item><![CDATA[Moved <pre>$params->get</pre> calls inside the template file instead of the dispatcher.]]></item>
             <item><![CDATA[Moved <pre>params->get</pre> calls to the top of the tmpl file for clarity.]]></item>
@@ -56,41 +61,33 @@
             <item>Changed license to GPLv3.</item>
             <item>Updated sites configuration for Joomla! 5 and 6 support.</item>
         </change>
-
         <note>
             <item>Simplified the target platform configuration for Joomla! update sites.</item>
         </note>
     </changelog>
-
     <changelog>
         <element>mod_tflearnpath</element>
         <type>module</type>
         <version>1.2</version>
-
         <fix>
             <item>Fixed helper file lesson retrieval so that all modules are displayed correctly.</item>
         </fix>
     </changelog>
-
     <changelog>
         <element>mod_tflearnpath</element>
         <type>module</type>
         <version>1.1</version>
-
         <fix>
             <item>Updated the helper file for compatibility with TF Learn 2.5.x and TF Library 2.9.x.</item>
         </fix>
-
         <change>
             <item>Blocked installation on Joomla! 4 because TF Learn versions after 2.4.4 are incompatible with Joomla! 4.</item>
         </change>
     </changelog>
-
     <changelog>
         <element>mod_tflearnpath</element>
         <type>module</type>
         <version>1.0</version>
-
         <addition>
             <item>Initial release.</item>
         </addition>
